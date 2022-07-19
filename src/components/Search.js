@@ -18,11 +18,17 @@ const Search = () => {
       });
       setResults(data.query.search);
     };
+
+    if (term && !results.length) {
+      search();
+    }
+
     const timeoutId = setTimeout(() => {
       if (term) {
         search();
       }
     }, 1000);
+
     return () => {
       clearTimeout(timeoutId);
     };

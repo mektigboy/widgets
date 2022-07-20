@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
@@ -6,6 +6,9 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
 
   useEffect(() => {
     document.body.addEventListener("click", (event) => {
+      if (reference.current.contains(event.target)) {
+        return;
+      }
       setOpen(false);
     });
   }, []);
